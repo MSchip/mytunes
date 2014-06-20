@@ -23,20 +23,25 @@
     <script src="views/SongQueueEntryView.js"></script>
     <script src="views/AppView.js"></script>
 
+    <script src="routers/queueRouter.js"></script>
+
     <script>
       var app;
       var library;
       var queue;
       var appView;
+      var qRouter;
 
       $(function(){
         // set up model objects
         library = new Songs(songData);
         queue = new SongQueue;
         app = new AppModel({library: library});
-
+        qRouter = new QueueRouter();
         // build a view for the top level of the whole app
         appView = new AppView({model: app});
+
+        Backbone.history.start();
 
         // put the view onto the screen
         $('body').append(appView.render());
