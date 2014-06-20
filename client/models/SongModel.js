@@ -6,6 +6,8 @@ var SongModel = Backbone.Model.extend({
   },
 
   ended: function(){
+    var plays = this.get("plays");
+    this.set("plays", plays + 1);
     this.trigger('ended', this);
   },
 
@@ -15,6 +17,16 @@ var SongModel = Backbone.Model.extend({
 
   dequeue: function(){
     this.trigger('dequeue', this);
+  },
+
+  downvote: function() {
+    var votes = this.get("votes");
+    this.set("votes", votes - 1);
+  },
+
+  upvote: function() {
+    var votes = this.get("votes");
+    this.set("votes", votes + 1);
   }
 
 });
